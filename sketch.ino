@@ -4,7 +4,7 @@
 // Hecho por Andrés Hugo Bernárdez
 // 2024
 //
-//Objetivo: Llevar lavaropas semi-automático para gente de bajos recursos.
+//
 // El lavaropas tendrá:
 //     * electroválvula común: Relé del superior
 //     * Motor para lavar: Relé del medio
