@@ -9,3 +9,6 @@ El programa es un lavarropas que cuenta con:
 *Botón de Programa
 *Botón de Pausa (Abrir tapa)
 *3 Leds para Programa Largo, Normal, Enjuague.
+
+
+Disponible en https://wokwi.com/projects/396616235878844417
