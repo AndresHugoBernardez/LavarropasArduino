@@ -13,4 +13,4 @@ El programa es un lavarropas que cuenta con:
 
 Disponible en https://wokwi.com/projects/396616235878844417
 
-Para hacer el lavarropas como base este vídeo: El Angelito (2023) "LAVADORA PORTATIL DE 12 VOLT - Económica y Fácil de Construir",Youtube, Extraído de  https://www.youtube.com/watch?v=ilxSvmWjvoA
+Para hacer el lavarropas como base este vídeo: El Angelito (2022) "LAVADORA PORTATIL DE 12 VOLT - Económica y Fácil de Construir",Youtube, Extraído de  https://www.youtube.com/watch?v=ilxSvmWjvoA
