@@ -30,6 +30,9 @@
 //   BOTÓN AMARILLO: Pausa: cuando se abre la tapa
 
 
+// NOTA: Los botones y sensores deben estar presionados al menos 250 
+// milisegundos para funcionar. Este tiempo es para evitar detectar ruidos.
+
 
 //Pines seleccionados:
 
@@ -87,7 +90,7 @@ void Pausa(void);
 void loop(void);
 
 
-
+//**************************************************
 
 //EntradaEnON()
 // Esta es una verificación redundante de la entrada que evita que se detecten ruidos en las entradas
@@ -168,8 +171,8 @@ void EsperarMinuto()
     // Se detiene todo automaticamente y se cambia el programa. 
     if(EntradaON(BotonPrograma)==1) {
       BotonPresionado=1;
-      loop();
-      i=600;
+      
+      i=600+1;
     };
   }
 }
@@ -192,8 +195,8 @@ void EsperarSegundos(int segundos)
     // Se detiene todo automaticamente y se cambia el programa. 
     if(EntradaON(BotonPrograma)==1) {
       BotonPresionado=1;
-      loop();
-      i=segundos+1;
+      
+      i=segundos*10+1;
       
     };
   }
@@ -220,7 +223,7 @@ void EsperarDecimaDeSegundo(int Decima)
     // Se detiene todo automaticamente y se cambia el programa. 
     if(EntradaON(BotonPrograma)==1) {
       BotonPresionado=1;
-      loop();
+      
       i=Decima+1;
       
     };
@@ -263,12 +266,14 @@ void MotorON(int tiempo)
   //Esperar hasta que se cumpla el tiempo
   for(i=0;i<tiempo && BotonPresionado==0;i++)
   {
+    
     EsperarMinuto();
+    
   }
 
    Estado=NADA;
    digitalWrite(ReleMotorLavar, LOW);
-
+  
 
 }
 
@@ -296,6 +301,7 @@ void Llenar()
   {
     EsperarDecimaDeSegundo(1);
     nivel=EntradaON(NivelMaximo);
+    
   }
   while(nivel!=1 && BotonPresionado==0);
 
@@ -331,6 +337,7 @@ void Vaciar()
   {
     EsperarDecimaDeSegundo(1);
     nivel=EntradaON(NivelDesagotado);
+    
   }
   while(nivel!=1 && BotonPresionado==0);
 
@@ -483,12 +490,12 @@ void loop() {
   if(BotonPresionado==1){
     ApagarReles();
     CambiarPrograma();
-    BotonPresionado=0;
     //Esperar hasta que se termine de pulsar el botón 
     // de programa
     while(digitalRead(BotonPrograma)==1){
       delay(100);
     }
+    BotonPresionado=0;
     EsperarSegundos(2); 
   }
 
