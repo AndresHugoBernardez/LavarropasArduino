@@ -51,6 +51,8 @@ const int NivelDesagotado=9;
 
 //Tiempos Seleccionados
 // en minutos
+// NOTA los tiempos se pusieron en 1 minuto cada uno para poder simularlos.
+//********ATENCIÓN: CORRIJA SU TIEMPO PARA SU USO************************************************************<<<<<<<<<<
 
 const int TiempoLavado=1;
 const int TiempoEnjuague=1;
