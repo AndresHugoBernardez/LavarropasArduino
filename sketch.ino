@@ -484,6 +484,11 @@ void loop() {
     ApagarReles();
     CambiarPrograma();
     BotonPresionado=0;
+    //Esperar hasta que se termine de pulsar el botón 
+    // de programa
+    while(digitalRead(BotonPrograma)==1){
+      delay(100);
+    }
     EsperarSegundos(2); 
   }
 
