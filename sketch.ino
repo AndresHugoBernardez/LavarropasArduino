@@ -27,7 +27,7 @@
 //   Led verde: Lavado común
 //   Led azul: Enjuague.
 //   BOTÓN VERDE:Botón para selección de programa
-//   BOTÓN AMARILLO: cuando se abre la tapa
+//   BOTÓN AMARILLO: Pausa: cuando se abre la tapa
 
 
 
