@@ -19,7 +19,7 @@
 // Boton rojo Abajo: Sensor de nivel de agua desagotada
 // LA CONFIGURACIÓN ELECTRICA DE LOS SENSORES AQUÍ SOLO ES DE MUESTRA Y
 // DEBE TENERSE EN CUENTA LA CONFIGURACIÓN DE LOS DISPOSITIVOS MEDIDORES 
-// DE NIVEL REALES
+// DE NIVEL REALES 
 
 
 // Además tendrá Programa de lavado 
@@ -53,7 +53,6 @@ const int NivelDesagotado=9;
 // en minutos
 // NOTA los tiempos se pusieron en 1 minuto cada uno para poder simularlos.
 //********ATENCIÓN: CORRIJA SU TIEMPO PARA SU USO************************************************************<<<<<<<<<<
-
 const int TiempoLavado=1;
 const int TiempoEnjuague=1;
 
@@ -86,6 +85,36 @@ int Estado=NADA;
 //Declaración previa de estructura de funciones de uso común (protocolo de C general)
 void Pausa(void);
 void loop(void);
+
+
+
+
+//EntradaEnON()
+// Esta es una verificación redundante de la entrada que evita que se detecten ruidos en las entradas
+// digitales. También puede agregarse un capacitor físico para evitar doble clicks al apretar botones
+// o accionar sensores digitales. La idea es esperar y verificar que el estado permanezca en 1 varias
+// veces antes de afirmar que un botón fue apretado y no fue un ruido.
+int EntradaON(int Entrada){
+
+  if(digitalRead(Entrada)==1){
+    //Esperar 100 milisegundos
+    delay(100);
+    if(digitalRead(Entrada)==1){
+      //Esperar 100 milisegundos
+      delay(100);
+      if(digitalRead(Entrada)==1){
+        //Esperar 150 milisegundos
+        delay(150);
+        return(1); 
+        
+      }
+    }
+  }
+  return(0);
+
+}
+
+
 
 
 ///**************************************
@@ -133,11 +162,11 @@ void EsperarMinuto()
     delay(100);
 
     // Si se presiona el botón de pausa, se detiene momentaneamente hasta soltarlo
-    if(digitalRead(BotonPausa)==1)Pausa();
+    if(EntradaON(BotonPausa)==1)Pausa();
 
     // Si en el transcurso del minuto se presiona el botón de programa (el verde)
     // Se detiene todo automaticamente y se cambia el programa. 
-    if(digitalRead(BotonPrograma)==1) {
+    if(EntradaON(BotonPrograma)==1) {
       BotonPresionado=1;
       loop();
       i=600;
@@ -157,11 +186,11 @@ void EsperarSegundos(int segundos)
     delay(100);
 
     // Si se presiona el botón de pausa, se detiene momentaneamente hasta soltarlo
-    if(digitalRead(BotonPausa)==1)Pausa();
+    if(EntradaON(BotonPausa)==1)Pausa();
 
     // Si en el transcurso  se presiona el botón de programa (el verde)
     // Se detiene todo automaticamente y se cambia el programa. 
-    if(digitalRead(BotonPrograma)==1) {
+    if(EntradaON(BotonPrograma)==1) {
       BotonPresionado=1;
       loop();
       i=segundos+1;
@@ -184,12 +213,12 @@ void EsperarDecimaDeSegundo(int Decima)
 
 
     // Si se presiona el botón de pausa, se detiene momentaneamente hasta soltarlo
-    if(digitalRead(BotonPausa)==1)Pausa();
+    if(EntradaON(BotonPausa)==1)Pausa();
 
 
     // Si en el transcurso  se presiona el botón de programa (el verde)
     // Se detiene todo automaticamente y se cambia el programa. 
-    if(digitalRead(BotonPrograma)==1) {
+    if(EntradaON(BotonPrograma)==1) {
       BotonPresionado=1;
       loop();
       i=Decima+1;
@@ -266,7 +295,7 @@ void Llenar()
   do
   {
     EsperarDecimaDeSegundo(1);
-    nivel=digitalRead(NivelMaximo);
+    nivel=EntradaON(NivelMaximo);
   }
   while(nivel!=1 && BotonPresionado==0);
 
@@ -301,7 +330,7 @@ void Vaciar()
   do
   {
     EsperarDecimaDeSegundo(1);
-    nivel=digitalRead(NivelDesagotado);
+    nivel=EntradaON(NivelDesagotado);
   }
   while(nivel!=1 && BotonPresionado==0);
 
@@ -397,10 +426,10 @@ void Pausa(){
   while (sigue==1){
 
     //verificar que siga presionado el botón de pausa.
-    sigue=digitalRead(BotonPausa);
+    sigue=EntradaON(BotonPausa);
 
     // Si mientras está pausado se presiona el boton de programa entonces se cambia el programa
-    if(digitalRead(BotonPrograma)==1){
+    if(EntradaON(BotonPrograma)==1){
       CambiarPrograma();
       BotonPresionado=0;
       cambio=1; 
