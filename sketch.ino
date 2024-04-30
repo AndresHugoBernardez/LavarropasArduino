@@ -77,7 +77,7 @@ const int VACIANDO=3;
 
 //    Variables Globales:
 
-int ProgramaActual=LARGO;
+int ProgramaActual=NINGUNO;
 int BotonPresionado=0;
 int Estado=NADA;
 
