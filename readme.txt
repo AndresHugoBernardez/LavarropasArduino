@@ -1,0 +1,11 @@
+Programa Arduino hecho en la página Wokwi.com
+
+El programa es un lavarropas que cuenta con:
+*Motor para lavar
+*Electroválvula
+*Bomba de desagote
+*Sensor de nivel maximo
+*Sensor de nivel vacío
+*Botón de Programa
+*Botón de Pausa (Abrir tapa)
+*3 Leds para Programa Largo, Normal, Enjuague.
