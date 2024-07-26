@@ -59,6 +59,11 @@ const int NivelDesagotado=9;
 const int TiempoLavado=1;
 const int TiempoEnjuague=1;
 
+////se pueden agregar más tiempos de enjuague
+
+const int TiempoEnjuague2=1;
+const int TiempoEnjuague3=1;
+
 
 
 //  Programas
@@ -505,6 +510,7 @@ void loop() {
                         if(BotonPresionado==0)  Llenar();
                         if(BotonPresionado==0)  MotorON(TiempoLavado);
                         if(BotonPresionado==0)  Vaciar();
+                        
                         if(BotonPresionado==0)  ProgramaActual=COMUN;
                         if(BotonPresionado==0)  LedsMode(COMUN);
                         if(BotonPresionado==0)  EsperarSegundos(5); 
@@ -512,16 +518,37 @@ void loop() {
                         if(BotonPresionado==0)  Llenar();
                         if(BotonPresionado==0)  MotorON(TiempoLavado);
                         if(BotonPresionado==0)  Vaciar();
+
                         if(BotonPresionado==0)  ProgramaActual=ENJUAGUE;
                         if(BotonPresionado==0)  LedsMode(ENJUAGUE);
                         if(BotonPresionado==0)  EsperarSegundos(5); 
+                        
+
     case ENJUAGUE:       
+    ///BLOQUE DE ENJUAGUE:
                         if(BotonPresionado==0)  Llenar();
                         if(BotonPresionado==0)  MotorON(TiempoEnjuague);
                         if(BotonPresionado==0)  Vaciar();
+ 
+    /// Repita el codigo de enjuague por cada enjuague que quiera agregar: aquí se repetiran 2 veces
+    //las variables TiempoEnjuague2 y TiempoEnjuague3 fueron agregados antes
+                        if(BotonPresionado==0)  Llenar();
+                        if(BotonPresionado==0)  MotorON(TiempoEnjuague2);
+                        if(BotonPresionado==0)  Vaciar();
+
+                        if(BotonPresionado==0)  Llenar();
+                        if(BotonPresionado==0)  MotorON(TiempoEnjuague3);
+                        if(BotonPresionado==0)  Vaciar();
+
+
+          
+
+/// En el ultimo enjuague cambie ProgramaActual a NINGUNO y LedsMode a NINGUNO
                         if(BotonPresionado==0)  ProgramaActual=NINGUNO;
                         if(BotonPresionado==0)  LedsMode(NINGUNO);
-                        if(BotonPresionado==0)  EsperarSegundos(5);  
+                        if(BotonPresionado==0)  EsperarSegundos(5); 
+
+
     case NINGUNO:       
   
                         if(BotonPresionado==0)  EsperarSegundos(5);                       
